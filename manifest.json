@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Mi Extension Base",
+  "description": "Plantilla base para extension de navegador (Chrome/Edge).",
+  "version": "0.1.0",
+  "action": {
+    "default_title": "Mi Extension",
+    "default_popup": "src/popup/popup.html"
+  },
+  "background": {
+    "service_worker": "src/background/background.js"
+  },
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "options_page": "src/options/options.html",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content/content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
