@@ -3,6 +3,10 @@
   "name": "vento",
   "version": "1.0",
   "permissions": ["storage"],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "Vento"
+  },
   "content_scripts": [
     {
       "matches": ["*://*.youtube.com/*"],

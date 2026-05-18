@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vento</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="popup-container">
+    <div class="popup-header">
+      <span class="logo">⚡</span>
+      <h1>Vento</h1>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="features-section" id="features-section">
+      <div class="feature-row master">
+        <span class="feature-label">Activado</span>
+        <label class="toggle">
+          <input type="checkbox" id="master-toggle" checked />
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="feature-row">
+        <span class="feature-label">Tema claro</span>
+        <label class="toggle">
+          <input type="checkbox" class="feature-toggle" data-feature="stealthTheme" checked />
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+
+      <div class="feature-row">
+        <span class="feature-label">Favicon</span>
+        <label class="toggle">
+          <input type="checkbox" class="feature-toggle" data-feature="stealthFavicon" checked />
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+
+      <div class="feature-row">
+        <span class="feature-label">Título falso</span>
+        <label class="toggle">
+          <input type="checkbox" class="feature-toggle" data-feature="stealthTitle" checked />
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+
+      <div class="feature-row">
+        <span class="feature-label">Ocultar video</span>
+        <label class="toggle">
+          <input type="checkbox" class="feature-toggle" data-feature="stealthVideo" checked />
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+
+      <div class="feature-row">
+        <span class="feature-label">Lista de títulos</span>
+        <label class="toggle">
+          <input type="checkbox" class="feature-toggle" data-feature="stealthList" checked />
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+
+      <div class="feature-row">
+        <span class="feature-label">Barra de control</span>
+        <label class="toggle">
+          <input type="checkbox" class="feature-toggle" data-feature="stealthPipBar" checked />
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

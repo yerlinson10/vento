@@ -4,6 +4,33 @@ const STEALTH_FAVICON =
 const LOG_STORAGE_KEY = "stealthLogs";
 const LOG_MAX_ENTRIES = 400;
 
+const STEALTH_STORAGE_KEY = "stealthSettings";
+
+const DEFAULT_SETTINGS = {
+  stealthEnabled: true,
+  stealthTheme: true,
+  stealthFavicon: true,
+  stealthTitle: true,
+  stealthVideo: true,
+  stealthList: true,
+  stealthPipBar: true
+};
+
+let stealthSettings = { ...DEFAULT_SETTINGS };
+
+async function loadStealthSettings() {
+  try {
+    const result = await chrome.storage.local.get(STEALTH_STORAGE_KEY);
+    const saved = result[STEALTH_STORAGE_KEY];
+    if (saved && typeof saved === "object") {
+      stealthSettings = { ...DEFAULT_SETTINGS, ...saved };
+    }
+  } catch (error) {
+    console.error("[DevTube Stealth] Error loading settings:", error);
+    stealthSettings = { ...DEFAULT_SETTINGS };
+  }
+}
+
 const state = {
   scheduled: false,
   logQueue: [],
@@ -780,6 +807,27 @@ function managePipBar() {
   }
 }
 
+function revertStealthTheme() {
+  const html = document.documentElement;
+  html.removeAttribute("stealth-light");
+  html.style.colorScheme = "";
+}
+
+function restoreFavicon() {
+  const stealthFavicon = document.getElementById("stealth-favicon");
+  if (stealthFavicon) stealthFavicon.remove();
+}
+
+function revertStealthTitle() {
+  // Allow the original title to restore naturally
+}
+
+function removeStealthList() {
+  const shell = document.getElementById("stealth-list-shell");
+  if (shell) shell.remove();
+  state.lastListSignature = null;
+}
+
 function applyStealth(reason = "tick") {
   if (hasCaptchaChallenge()) {
     if (!state.captchaSuspended) {
@@ -797,16 +845,58 @@ function applyStealth(reason = "tick") {
     enqueueLog("info", "CAPTCHA ya no detectado. Modo stealth reactivado.");
   }
 
+  if (!stealthSettings.stealthEnabled) {
+    // Full disable: revert everything
+    setStealthEnabled(false);
+    removePipBar();
+    restoreVideoVisibility();
+    revertStealthTheme();
+    restoreFavicon();
+    removeStealthList();
+    if (reason === "init") {
+      enqueueLog("info", "Stealth desactivado por configuracion");
+    }
+    return;
+  }
+
   setStealthEnabled(true);
-  applyStealthTheme();
-  applyStealthFavicon();
-  applyStealthTitle();
-  applyStealthVideo();
-  renderStealthList();
-  managePipBar();
+
+  if (stealthSettings.stealthTheme) {
+    applyStealthTheme();
+  } else {
+    revertStealthTheme();
+  }
+
+  if (stealthSettings.stealthFavicon) {
+    applyStealthFavicon();
+  } else {
+    restoreFavicon();
+  }
+
+  if (stealthSettings.stealthTitle) {
+    applyStealthTitle();
+  }
+
+  if (stealthSettings.stealthVideo) {
+    applyStealthVideo();
+  } else {
+    restoreVideoVisibility();
+  }
+
+  if (stealthSettings.stealthList) {
+    renderStealthList();
+  } else {
+    removeStealthList();
+  }
+
+  if (stealthSettings.stealthPipBar) {
+    managePipBar();
+  } else {
+    removePipBar();
+  }
 
   if (reason === "init") {
-    enqueueLog("info", "Stealth aplicado", { reason });
+    enqueueLog("info", "Stealth aplicado", { reason, settings: stealthSettings });
   }
 }
 
@@ -915,8 +1005,10 @@ function setupTitleObserver() {
   if (!titleElement) return;
 
   const titleObserver = new MutationObserver(() => {
-    if (document.title !== STEALTH_TITLE) {
-      document.title = STEALTH_TITLE;
+    if (stealthSettings.stealthEnabled && stealthSettings.stealthTitle) {
+      if (document.title !== STEALTH_TITLE) {
+        document.title = STEALTH_TITLE;
+      }
     }
   });
 
@@ -964,7 +1056,18 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message && message.type === "ventoUpdateSettings" && message.settings) {
+    stealthSettings = { ...DEFAULT_SETTINGS, ...message.settings };
+    scheduleApply("popup");
+  }
+});
+
 setupLogHotkeys();
 setupSearchHotkeys();
-setupTitleObserver();
-applyStealth("init");
+
+(async function initContent() {
+  await loadStealthSettings();
+  setupTitleObserver();
+  applyStealth("init");
+})();
