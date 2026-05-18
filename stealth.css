@@ -1,269 +1,173 @@
-/* =============================================================
-   DARK THEME OVERRIDE — pisar variables CSS internas de YouTube
-   ============================================================= */
-
-html, body, ytd-app {
-  background: #fff !important;
-  color: #111 !important;
-  font-family: "Segoe UI", system-ui, sans-serif !important;
+html.stealth-active,
+body.stealth-active {
+  background: #ffffff !important;
+  color: #111111 !important;
   margin: 0 !important;
   padding: 0 !important;
   color-scheme: light !important;
 }
 
-
-/* OCULTAR HEADER, LOGO, NAV, ADS, TODO EL TOPBAR */
-#masthead, ytd-masthead, #container.ytd-masthead, #header, ytd-app > #header, #guide, tp-yt-app-drawer, #chips-wrapper, ytd-mini-guide-renderer, ytd-app[role="main"] > ytd-masthead, ytd-app[role="main"] > #masthead, ytd-app[role="main"] > #header, #logo, ytd-logo, a#logo, #logo-icon, #logo-icon-container, ytd-masthead #logo, yt-icon.ytd-logo, .ytd-topbar-logo-renderer, ytd-display-ad-renderer, ytd-promoted-sparkles-web-renderer, ytd-ad-slot-renderer, #masthead-ad, .ytd-banner-promo-renderer, #search, #search-form, #search-icon-legacy, #voice-search-button, #end, #buttons, #avatar-btn, ytd-topbar-menu-button-renderer, ytd-notification-topbar-button-renderer, ytd-masthead #end, ytd-masthead #buttons, ytd-masthead #avatar-btn, ytd-masthead #search {
-  display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
+html.stealth-active ytd-app {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  user-select: none !important;
 }
 
-
-/* OCULTAR SIDEBAR, CHIPS, FEED-EXTRAS, TODO MENOS EL FEED PRINCIPAL */
-#secondary, ytd-mini-guide-renderer, ytd-feed-filter-chip-bar-renderer, ytd-browse-feed-actions-renderer, ytd-rich-shelf-renderer, ytd-app-drawer, ytd-app[role="navigation"], ytd-app[role="complementary"], ytd-app[role="banner"], ytd-app[role="search"], ytd-app[role="contentinfo"], ytd-app[role="presentation"], ytd-app[role="dialog"], ytd-app[role="alert"], ytd-app[role="status"], ytd-app[role="region"] {
+#stealth-list-shell {
   display: none !important;
-  visibility: hidden !important;
-}
-
-
-/* El feed ocupa todo el ancho, sin márgenes */
-#primary, ytd-two-column-browse-results-renderer > #primary, #contents, ytd-rich-grid-renderer, ytd-section-list-renderer, ytd-item-section-renderer {
-  width: 100% !important;
-  max-width: 700px !important;
-  margin: 0 auto !important;
-  padding: 0 !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483646 !important;
+  background: #ffffff !important;
+  overflow-y: auto !important;
+  padding: 12px 20px 28px !important;
   box-sizing: border-box !important;
-  background: #fff !important;
+  font-family: "Segoe UI", system-ui, sans-serif !important;
 }
 
+#stealth-toolbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 3 !important;
+  background: #ffffff !important;
+  padding: 6px 0 8px !important;
+  border-bottom: 1px solid #efefef !important;
+}
 
-/* FEED: SOLO LISTA DE TÍTULOS, SIN ESPACIOS */
-ytd-rich-grid-renderer, ytd-rich-grid-renderer #contents, ytd-section-list-renderer > #contents, #contents.ytd-item-section-renderer {
-  display: block !important;
-  grid-template-columns: unset !important;
+#stealth-search-form {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 6px 8px !important;
+  border: 1px solid #e6e6e6 !important;
+  border-radius: 10px !important;
+  background: #fafafa !important;
+}
+
+#stealth-home-button {
+  height: 30px !important;
+  border: 1px solid #dddddd !important;
+  border-radius: 7px !important;
+  background: #f4f4f4 !important;
+  color: #555555 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 0 10px !important;
+  cursor: pointer !important;
+}
+
+#stealth-home-button:hover {
+  background: #ececec !important;
+  color: #333333 !important;
+}
+
+#stealth-search-input {
+  flex: 1 !important;
+  min-width: 0 !important;
+  height: 30px !important;
+  border: 1px solid #e2e2e2 !important;
+  border-radius: 7px !important;
+  padding: 0 10px !important;
+  font-size: 14px !important;
+  color: #2a2a2a !important;
+  background: #ffffff !important;
+  outline: none !important;
+}
+
+#stealth-search-input:focus {
+  border-color: #c7c7c7 !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+#stealth-search-button {
+  height: 30px !important;
+  border: 1px solid #dddddd !important;
+  border-radius: 7px !important;
+  background: #f4f4f4 !important;
+  color: #555555 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 0 10px !important;
+  cursor: pointer !important;
+}
+
+#stealth-search-button:hover {
+  background: #ececec !important;
+  color: #333333 !important;
+}
+
+#stealth-list-status {
+  position: sticky !important;
+  top: 56px !important;
+  background: #ffffff !important;
+  color: #444444 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  border-bottom: 1px solid #ececec !important;
+  padding: 10px 0 !important;
+  margin: 0 0 6px !important;
+  z-index: 1 !important;
+}
+
+#stealth-list-items {
+  display: flex !important;
+  flex-direction: column !important;
   gap: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 
-ytd-rich-item-renderer, ytd-video-renderer, ytd-compact-video-renderer, ytd-rich-grid-media {
+a.stealth-title-link {
   display: block !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-  background: #fff !important;
-  box-shadow: none !important;
-}
-
-/* OCULTAR TODO MENOS EL TÍTULO */
-ytd-rich-item-renderer *, ytd-video-renderer *, ytd-compact-video-renderer *, ytd-rich-grid-media * {
-  display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-  box-shadow: none !important;
-  background: none !important;
-  color: transparent !important;
-}
-
-/* SOLO EL TÍTULO ES VISIBLE */
-#video-title, #video-title-link, a#video-title, h3.ytd-rich-grid-media, h3.ytd-video-renderer, yt-formatted-string.title {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  color: #111 !important;
+  color: #111111 !important;
+  text-decoration: none !important;
   font-size: 15px !important;
   font-weight: 600 !important;
-  line-height: 1.6 !important;
-  text-decoration: none !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  max-width: 100% !important;
-  padding: 8px 0 !important;
-  margin: 0 !important;
-  background: #fff !important;
-  border: none !important;
-  box-shadow: none !important;
-  min-height: 0 !important;
-  min-width: 0 !important;
-  height: auto !important;
-}
-
-/* Permitir PiP bar */
-#stealth-pip-bar, #stealth-pip-bar *, #sth-title, #sth-controls, #sth-controls button, #sth-time {
-  display: revert !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  color: revert !important;
-  background: revert !important;
-  border: revert !important;
-  box-shadow: revert !important;
-  min-height: revert !important;
-  min-width: revert !important;
-  height: revert !important;
-  width: revert !important;
-  padding: revert !important;
-  margin: revert !important;
-}
-
-/* =============================================================
-   FEED CARDS: mostrar SOLO el título — ocultar todo lo demás
-   ============================================================= */
-
-/* 1. Ocultar toda la sección visual (thumbnail + media-container) */
-ytd-rich-grid-media #thumbnail-container,
-ytd-rich-grid-media #media-container,
-ytd-rich-grid-media ytd-thumbnail,
-ytd-rich-grid-media a#thumbnail,
-ytd-rich-grid-media yt-image,
-ytd-rich-grid-media ytd-moving-thumbnail-renderer,
-ytd-video-renderer  ytd-thumbnail,
-ytd-video-renderer  a#thumbnail,
-ytd-video-renderer  yt-image,
-/* 2. Ocultar info secundaria: canal, vistas, fecha */
-ytd-rich-grid-media ytd-video-meta-block,
-ytd-rich-grid-media #avatar-section,
-ytd-rich-grid-media #channel-info,
-ytd-rich-grid-media #byline-container,
-ytd-rich-grid-media ytd-channel-name,
-ytd-rich-grid-media #metadata-line,
-ytd-video-renderer  ytd-video-meta-block,
-ytd-video-renderer  #channel-info,
-ytd-video-renderer  #byline-container,
-ytd-video-renderer  #metadata-line,
-/* 3. Badges, thumbnails de Shorts */
-ytd-badge-supported-renderer,
-ytd-thumbnail-overlay-time-status-renderer,
-ytd-thumbnail-overlay-resume-playback-renderer,
-ytd-thumbnail-overlay-inline-unplayable-renderer,
-ytd-thumbnail-overlay-toggle-button-renderer,
-/* 4. Todos los img/yt-image directos */
-ytd-thumbnail yt-image,
-yt-image,
-yt-avatar-shape,
-img.yt-core-image,
-img[src*="i.ytimg.com"],
-img[src*="ytimg.com"],
-[style*="i.ytimg.com"],
-[style*="ytimg.com"],
-/* 5. Avatares globales */
-#avatar {
-  display: none !important;
-  visibility: hidden !important;
-}
-
-/* El dismissible como bloque limpio */
-ytd-rich-grid-media #dismissible,
-ytd-video-renderer  #dismissible {
-  display: block !important;
-  padding: 0 !important;
-}
-
-/* Details ocupa todo el ancho */
-ytd-rich-grid-media #details,
-ytd-video-renderer  #details {
-  display: block !important;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 6px 8px !important;
-  box-sizing: border-box !important;
-}
-
-/* Meta visible */
-ytd-rich-grid-media #meta,
-ytd-video-renderer  #meta {
-  display: block !important;
-}
-
-/* El título */
-#video-title,
-#video-title-link,
-a#video-title,
-h3.ytd-rich-grid-media,
-h3.ytd-video-renderer {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  color: #111111 !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
   line-height: 1.5 !important;
-  text-decoration: none !important;
+  padding: 10px 0 !important;
+  border-bottom: 1px solid #efefef !important;
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
-  max-width: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
 }
 
-/* =============================================================
-   WATCH PAGE — ocultar player visual (video sigue en audio)
-   ============================================================= */
-
-/* Ocultar el player con overflow hidden en lugar de display:none
-   para que el <video> no quede en un display:none y PiP funcione */
-#player-container,
-#player-container-inner,
-ytd-player {
-  height: 0 !important;
-  overflow: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
+a.stealth-title-link:hover {
+  color: #005a9e !important;
+  background: #f8fbff !important;
 }
 
-/* Recomendaciones laterales en watch */
-#secondary.ytd-watch-flexy {
-  display: none !important;
+a.stealth-title-link:visited {
+  color: #4f4f4f !important;
 }
 
-/* Watch: que el contenido principal use todo el ancho */
-#primary.ytd-watch-flexy {
-  width: 100% !important;
-  max-width: 860px !important;
-  margin: 56px auto 0 !important;
-}
-
-/* =============================================================
-   BARRA PiP (inyectada por content.js)
-   ============================================================= */
 #stealth-pip-bar {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
   z-index: 2147483647 !important;
-  background: #1e1e1e !important;
-  color: #cccccc !important;
-  font-family: "Consolas", "Monaco", monospace !important;
-  font-size: 13px !important;
-  padding: 6px 16px !important;
+  height: 42px !important;
+  box-sizing: border-box !important;
+  background: #151515 !important;
+  color: #f2f2f2 !important;
+  border-bottom: 1px solid #2c2c2c !important;
   display: flex !important;
   align-items: center !important;
-  gap: 12px !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.5) !important;
-  border-bottom: 2px solid #007acc !important;
-  height: 40px !important;
-  box-sizing: border-box !important;
+  gap: 10px !important;
+  padding: 0 12px !important;
+  font-family: Consolas, Monaco, monospace !important;
+  font-size: 12px !important;
 }
 
 #sth-title {
   flex: 1 !important;
   overflow: hidden !important;
-  white-space: nowrap !important;
   text-overflow: ellipsis !important;
+  white-space: nowrap !important;
   color: #9cdcfe !important;
 }
 
@@ -271,188 +175,35 @@ ytd-player {
   display: flex !important;
   align-items: center !important;
   gap: 6px !important;
-  flex-shrink: 0 !important;
 }
 
 #sth-controls button {
   background: #2d2d2d !important;
-  color: #cccccc !important;
-  border: 1px solid #555 !important;
+  color: #f2f2f2 !important;
+  border: 1px solid #555555 !important;
   border-radius: 4px !important;
-  padding: 3px 10px !important;
-  cursor: pointer !important;
+  padding: 3px 8px !important;
   font-size: 12px !important;
-  font-family: inherit !important;
-  line-height: 1.4 !important;
+  line-height: 1.3 !important;
+  cursor: pointer !important;
 }
 
 #sth-controls button:hover {
   background: #007acc !important;
-  color: #ffffff !important;
   border-color: #007acc !important;
 }
 
 #sth-time {
-  color: #6a9955 !important;
-  font-size: 12px !important;
-  min-width: 100px !important;
+  min-width: 110px !important;
   text-align: right !important;
+  color: #b5cea8 !important;
 }
 
-/* Empujar la masthead de YouTube para que no quede debajo de la barra */
-ytd-masthead {
-  top: 40px !important;
-}
-
-/* ============================================================
-   OCULTAR LOGO DE YOUTUBE
-   ============================================================ */
-#logo,
-ytd-logo,
-#logo-icon,
-#logo-icon-container,
-ytd-masthead #logo,
-a#logo,
-yt-icon.ytd-logo,
-.ytd-topbar-logo-renderer {
-  display: none !important;
-  visibility: hidden !important;
-}
-
-/* ============================================================
-   OCULTAR MINIATURAS — selectores 2024-2026
-   Solo se oculta el thumbnail, NO el contenedor de texto
-   ============================================================ */
-
-/* Thumbnails clásicos */
-ytd-thumbnail,
-a#thumbnail,
-#thumbnail-container,
-ytd-playlist-thumbnail,
-ytd-moving-thumbnail-renderer,
-/* Solo el contenedor de imagen dentro de rich-grid-media */
-ytd-rich-grid-media #media-container,
-ytd-rich-grid-media ytd-thumbnail,
-ytd-rich-grid-media a#thumbnail,
-/* Lockup model (2024+) */
-yt-lockup-thumbnail,
-yt-lockup-image,
-/* yt-image y sus imgs */
-yt-image,
-yt-image img,
-/* Avatares */
-#avatar,
-yt-avatar-shape,
-yt-avatar-shape img,
-/* Paredes de video / autoplay */
-.ytp-videowall-still-image,
-/* Imágenes directas de ytimg */
-img.yt-core-image,
-img[src*="i.ytimg.com"],
-img[src*="ytimg.com"],
-/* Reproductor */
-#player-container,
-#movie_player,
-.html5-video-container {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-/* Bloquear imágenes de fondo inline que usa YouTube */
-[style*="i.ytimg.com"],
-[style*="ytimg.com"] {
-  background-image: none !important;
-}
-
-/* ============================================================
-   TIPOGRAFÍA Y COLORES DE TEXTO
-   ============================================================ */
-#video-title,
-#video-title-link,
-a#video-title,
-yt-formatted-string.ytd-rich-grid-media {
-  color: #111111 !important;
-  font-size: 14px !important;
-  font-weight: 600 !important;
-  line-height: 1.4 !important;
-  text-decoration: none !important;
-}
-
-#metadata-line span,
-#metadata-line,
-.inline-metadata-item,
-yt-formatted-string[has-link-only_] {
-  color: #606060 !important;
-  font-size: 12px !important;
-}
-
-/* ============================================================
-   LAYOUT: FONDOS BLANCOS EN CONTENEDORES
-   ============================================================ */
-#contents,
-#primary,
-#secondary,
-ytd-rich-grid-renderer,
-ytd-item-section-renderer,
-ytd-browse,
-ytd-two-column-browse-results-renderer,
-tp-yt-app-drawer,
-#guide-inner-content {
-  background-color: #ffffff !important;
-}
-
-/* ============================================================
-   LAYOUT: LISTA VERTICAL (sin grid de tarjetas)
-   ============================================================ */
-
-/* El grid pasa a ser bloque simple */
-ytd-rich-grid-renderer,
-ytd-rich-grid-renderer #contents,
-ytd-section-list-renderer #contents,
-#contents.ytd-item-section-renderer {
+html.stealth-active #stealth-list-shell {
   display: block !important;
-  grid-template-columns: unset !important;
-  gap: 0 !important;
+  padding-top: 12px !important;
 }
 
-/* Cada fila ocupa todo el ancho */
-ytd-rich-item-renderer,
-ytd-video-renderer,
-ytd-compact-video-renderer,
-ytd-rich-grid-media {
-  display: block !important;
-  width: 100% !important;
-  max-width: 860px !important;
-  margin: 0 auto !important;
-  padding: 8px 16px !important;
-  border-bottom: 1px solid #e5e5e5 !important;
-  box-sizing: border-box !important;
-  background: #ffffff !important;
-}
-
-/* El dismissible y details también en bloque (sin float/flex del thumbnail) */
-ytd-video-renderer #dismissible,
-ytd-rich-item-renderer #dismissible,
-ytd-compact-video-renderer #dismissible,
-ytd-rich-grid-media #dismissible {
-  display: block !important;
-  flex-direction: column !important;
-}
-
-ytd-video-renderer #details,
-ytd-rich-item-renderer #details,
-ytd-compact-video-renderer #details,
-ytd-rich-grid-media #details {
-  margin-left: 0 !important;
-  padding-left: 0 !important;
-  width: 100% !important;
-}
-
-#channel-info,
-#byline-container,
-ytd-channel-name {
-  display: inline !important;
-  opacity: 0.9 !important;
+html.stealth-watch #stealth-list-shell {
+  padding-top: 54px !important;
 }
