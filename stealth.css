@@ -207,3 +207,82 @@ html.stealth-active #stealth-list-shell {
 html.stealth-watch #stealth-list-shell {
   padding-top: 54px !important;
 }
+
+/* ── Dark theme for stealth overlay ── */
+html.stealth-dark.stealth-active,
+html.stealth-dark body.stealth-active {
+  background: #18181b !important;
+  color: #e4e4e7 !important;
+  color-scheme: dark !important;
+}
+
+html.stealth-dark #stealth-list-shell {
+  background: #18181b !important;
+}
+
+html.stealth-dark #stealth-toolbar {
+  background: #18181b !important;
+  border-bottom-color: #3f3f46 !important;
+}
+
+html.stealth-dark #stealth-search-form {
+  background: #27272a !important;
+  border-color: #3f3f46 !important;
+}
+
+html.stealth-dark #stealth-home-button {
+  background: #3f3f46 !important;
+  border-color: #52525b !important;
+  color: #d4d4d8 !important;
+}
+
+html.stealth-dark #stealth-home-button:hover {
+  background: #52525b !important;
+  color: #f4f4f5 !important;
+}
+
+html.stealth-dark #stealth-search-input {
+  background: #27272a !important;
+  border-color: #3f3f46 !important;
+  color: #e4e4e7 !important;
+}
+
+html.stealth-dark #stealth-search-input::placeholder {
+  color: #71717a !important;
+}
+
+html.stealth-dark #stealth-search-input:focus {
+  border-color: #71717a !important;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.06) !important;
+}
+
+html.stealth-dark #stealth-search-button {
+  background: #3f3f46 !important;
+  border-color: #52525b !important;
+  color: #d4d4d8 !important;
+}
+
+html.stealth-dark #stealth-search-button:hover {
+  background: #52525b !important;
+  color: #f4f4f5 !important;
+}
+
+html.stealth-dark #stealth-list-status {
+  background: #18181b !important;
+  color: #a1a1aa !important;
+  border-bottom-color: #3f3f46 !important;
+}
+
+html.stealth-dark a.stealth-title-link {
+  color: #e4e4e7 !important;
+  border-bottom-color: #3f3f46 !important;
+}
+
+html.stealth-dark a.stealth-title-link:hover {
+  color: #93c5fd !important;
+  background: #1e3a5f !important;
+}
+
+html.stealth-dark a.stealth-title-link:visited {
+  color: #a1a1aa !important;
+}

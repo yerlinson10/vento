@@ -7,10 +7,42 @@ const DEFAULT_SETTINGS = {
   stealthTitle: true,
   stealthVideo: true,
   stealthList: true,
-  stealthPipBar: true
+  stealthPipBar: true,
+  popupTheme: 'system'
 };
 
 let currentSettings = { ...DEFAULT_SETTINGS };
+let systemThemeQuery = null;
+
+function resolveTheme(theme) {
+  if (theme === 'dark') return 'dark';
+  if (theme === 'light') return 'light';
+  // 'system' — follow OS preference
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function applyPopupTheme(theme) {
+  const resolved = resolveTheme(theme);
+  document.body.dataset.theme = resolved;
+
+  document.querySelectorAll('.theme-btn').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.theme === theme);
+  });
+
+  // React to OS changes when mode is 'system'
+  if (systemThemeQuery) {
+    systemThemeQuery.removeEventListener('change', onSystemThemeChange);
+    systemThemeQuery = null;
+  }
+  if (theme === 'system') {
+    systemThemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    systemThemeQuery.addEventListener('change', onSystemThemeChange);
+  }
+}
+
+function onSystemThemeChange() {
+  applyPopupTheme('system');
+}
 
 async function loadSettings() {
   try {
@@ -85,6 +117,17 @@ function applyFeatureToggle(feature, enabled) {
 async function initPopup() {
   await loadSettings();
   updateFeatureToggles();
+  applyPopupTheme(currentSettings.popupTheme || 'system');
+
+  // Theme selector
+  document.querySelectorAll('.theme-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const theme = btn.dataset.theme;
+      currentSettings.popupTheme = theme;
+      applyPopupTheme(theme);
+      saveSettings();
+    });
+  });
 
   // Master toggle
   document.getElementById('master-toggle').addEventListener('change', (event) => {

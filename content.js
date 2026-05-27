@@ -13,7 +13,8 @@ const DEFAULT_SETTINGS = {
   stealthTitle: true,
   stealthVideo: true,
   stealthList: true,
-  stealthPipBar: true
+  stealthPipBar: true,
+  popupTheme: 'system'
 };
 
 let stealthSettings = { ...DEFAULT_SETTINGS };
@@ -44,7 +45,7 @@ const state = {
   scrollSyncRaf: 0,
   lastApplyAt: 0,
   applyTimer: 0,
-  minApplyGapMs: 350
+  minApplyGapMs: 2000
 };
 
 function nowIso() {
@@ -813,6 +814,40 @@ function revertStealthTheme() {
   html.style.colorScheme = "";
 }
 
+let _stealthPageThemeQuery = null;
+
+function resolvePageTheme(theme) {
+  if (theme === 'dark') return 'dark';
+  if (theme === 'light') return 'light';
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function applyStealthPageTheme() {
+  const theme = stealthSettings.popupTheme || 'system';
+  const resolved = resolvePageTheme(theme);
+  const html = document.documentElement;
+
+  if (resolved === 'dark') {
+    html.classList.add('stealth-dark');
+  } else {
+    html.classList.remove('stealth-dark');
+  }
+
+  // React to OS changes when mode is 'system'
+  if (_stealthPageThemeQuery) {
+    _stealthPageThemeQuery.removeEventListener('change', _onSystemPageThemeChange);
+    _stealthPageThemeQuery = null;
+  }
+  if (theme === 'system') {
+    _stealthPageThemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    _stealthPageThemeQuery.addEventListener('change', _onSystemPageThemeChange);
+  }
+}
+
+function _onSystemPageThemeChange() {
+  applyStealthPageTheme();
+}
+
 function restoreFavicon() {
   const stealthFavicon = document.getElementById("stealth-favicon");
   if (stealthFavicon) stealthFavicon.remove();
@@ -894,6 +929,8 @@ function applyStealth(reason = "tick") {
   } else {
     removePipBar();
   }
+
+  applyStealthPageTheme();
 
   if (reason === "init") {
     enqueueLog("info", "Stealth aplicado", { reason, settings: stealthSettings });

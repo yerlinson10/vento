@@ -4,12 +4,42 @@
   box-sizing: border-box;
 }
 
+/* ── Color tokens ── */
+body {
+  --bg: #ffffff;
+  --bg-secondary: #f2f2f7;
+  --text: #1c1c1e;
+  --text-secondary: #8e8e93;
+  --divider: #e5e5ea;
+  --toggle-off: #e5e5ea;
+  --toggle-thumb: #ffffff;
+  --theme-btn-bg: #e5e5ea;
+  --theme-btn-active-bg: #ffffff;
+  --theme-btn-active-text: #1c1c1e;
+  --theme-btn-text: #8e8e93;
+}
+
+body[data-theme="dark"] {
+  --bg: #1c1c1e;
+  --bg-secondary: #2c2c2e;
+  --text: #f2f2f7;
+  --text-secondary: #8e8e93;
+  --divider: #38383a;
+  --toggle-off: #48484a;
+  --toggle-thumb: #ffffff;
+  --theme-btn-bg: #2c2c2e;
+  --theme-btn-active-bg: #48484a;
+  --theme-btn-active-text: #f2f2f7;
+  --theme-btn-text: #8e8e93;
+}
+
 body {
   width: 240px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   font-size: 12.5px;
-  background: #ffffff;
-  color: #1c1c1e;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.2s, color 0.2s;
 }
 
 .popup-container {
@@ -33,15 +63,45 @@ body {
 .popup-header h1 {
   font-size: 13px;
   font-weight: 700;
-  color: #1c1c1e;
+  color: var(--text);
   letter-spacing: -0.2px;
 }
 
 /* Divider */
 .divider {
   height: 1px;
-  background: #e5e5ea;
+  background: var(--divider);
   margin: 4px 14px;
+}
+
+/* Theme selector */
+.theme-selector {
+  display: flex;
+  gap: 4px;
+  padding: 6px 14px;
+  background: var(--theme-btn-bg);
+  border-radius: 8px;
+  margin: 4px 14px 2px;
+}
+
+.theme-btn {
+  flex: 1;
+  padding: 4px 0;
+  font-size: 11px;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--theme-btn-text);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.theme-btn.active {
+  background: var(--theme-btn-active-bg);
+  color: var(--theme-btn-active-text);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
 
 /* Feature rows */
@@ -54,7 +114,7 @@ body {
 
 .feature-label {
   font-size: 12.5px;
-  color: #1c1c1e;
+  color: var(--text);
   line-height: 1.3;
 }
 
@@ -87,7 +147,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: #e5e5ea;
+  background: var(--toggle-off);
   border-radius: 22px;
   transition: background 0.2s;
 }
@@ -99,7 +159,7 @@ body {
   width: 18px;
   left: 2px;
   bottom: 2px;
-  background: #ffffff;
+  background: var(--toggle-thumb);
   border-radius: 50%;
   box-shadow: 0 1px 3px rgba(0,0,0,0.15);
   transition: transform 0.2s;
